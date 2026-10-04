@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tasador de cartas Pokémon: cuánto vale tu carta con una foto | TasaCartas</title>
+<meta name="description" content="Descubre cuánto vale tu carta Pokémon en segundos. Haz una foto y obtén el precio estimado en euros, la colección, la versión y el estado. Gratis y sin registro.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="canonical" href="https://TU-DOMINIO.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TasaCartas · Tasador de cartas Pokémon">
+<meta property="og:description" content="Haz una foto a tu carta Pokémon y descubre su valor estimado en euros.">
+<meta property="og:url" content="https://TU-DOMINIO.com/">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%83%8F%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Montserrat:wght@300;400;500&display=swap">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"TasaCartas","description":"Tasador de cartas Pokémon con foto. Estima el precio en euros.","url":"https://TU-DOMINIO.com/","applicationCategory":"UtilitiesApplication","operatingSystem":"Web","inLanguage":"es","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script>
+<style>
+:root{--bg:#1b1916;--bg2:#24211c;--ink:#e8e0cf;--mute:#a0967f;--gold:#c8a96b;--gold2:#9c7f45;--line:rgba(200,169,107,.22);--on:#1b1916;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f1ece0;--bg2:#faf6ec;--ink:#2b251b;--mute:#76694f;--gold:#8a6a2c;--gold2:#b8955a;--line:rgba(138,106,44,.28);--on:#fbf7ec}}
+:root[data-theme="light"]{--bg:#f1ece0;--bg2:#faf6ec;--ink:#2b251b;--mute:#76694f;--gold:#8a6a2c;--gold2:#b8955a;--line:rgba(138,106,44,.28);--on:#fbf7ec}
+:root[data-theme="dark"]{--bg:#1b1916;--bg2:#24211c;--ink:#e8e0cf;--mute:#a0967f;--gold:#c8a96b;--gold2:#9c7f45;--line:rgba(200,169,107,.22);--on:#1b1916}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--bg2),var(--bg) 340px),var(--bg);color:var(--ink);font-family:'Montserrat',system-ui,sans-serif;font-weight:300;line-height:1.5;display:flex;justify-content:center}
+main{width:100%;max-width:560px;padding:34px 20px 52px;text-align:center}
+.orn{color:var(--gold);font-size:11px;letter-spacing:.5em;padding-left:.5em}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:40px;letter-spacing:.14em;margin:8px 0 2px;padding-left:.14em;color:var(--gold)}
+.sub{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);opacity:.85;margin:0 0 4px}
+.sub2{font-size:12px;color:var(--mute);margin:0 0 20px}
+.user{font-size:12px;color:var(--mute);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:18px}
+.user b{color:var(--gold);font-weight:500}
+.tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:22px}
+.tabs button{flex:1;margin:0;width:auto;border:0;border-radius:0;background:none;color:var(--mute);padding:13px;border-bottom:2px solid transparent;font-size:12px}
+.tabs button.on{color:var(--gold);border-bottom-color:var(--gold)}
+button{font:inherit;font-weight:500;font-size:12px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;width:100%;padding:15px;margin-top:10px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--gold)}
+.primary{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--on);border-color:transparent}
+button:disabled{opacity:.4;cursor:not-allowed}
+.row{display:flex;gap:10px}
+.frame{position:relative;aspect-ratio:5/7;max-width:330px;margin:0 auto;border:1px solid var(--line);border-radius:14px;background:var(--bg2);display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+.frame::before{content:"";position:absolute;inset:8px;border:1px solid var(--line);border-radius:9px;pointer-events:none;z-index:1}
+.frame img{width:100%;height:100%;object-fit:cover;display:none}
+.hint{padding:26px;color:var(--mute);font-size:13px}
+.hint b{display:block;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:25px;color:var(--ink);margin-bottom:6px}
+.scan{position:absolute;left:8px;right:8px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.8;display:none;z-index:2;animation:s 2.4s ease-in-out infinite}
+.busy .scan{display:block}
+@keyframes s{0%,100%{top:7%}50%{top:93%}}
+.card{border:1px solid var(--line);border-radius:14px;background:var(--bg2);padding:10px;text-align:center;box-shadow:0 10px 26px rgba(0,0,0,.16)}
+.card .ph{aspect-ratio:5/7;background-size:cover;background-position:center;border-radius:9px;background-color:var(--bg);border:1px solid var(--line)}
+.card .in{padding:14px 6px 6px}
+.tier{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.cat{font-size:12px;color:var(--mute);margin-top:6px}
+.name{font-family:'Cormorant Garamond',Georgia,serif;font-size:25px;font-weight:600;margin:4px 0 8px;line-height:1.15}
+.price{font-family:'Cormorant Garamond',Georgia,serif;font-size:42px;font-weight:500;color:var(--gold);line-height:1.1}
+.est{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:4px 0 12px}
+.why{font-size:13px;line-height:1.65;color:var(--ink);opacity:.85;text-align:left;border-top:1px solid var(--line);padding-top:12px}
+.meta{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--mute);margin-top:12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid .name{font-size:18px}.grid .price{font-size:27px}.grid .why,.grid .meta{display:none}
+.grid button{padding:9px;font-size:10px;margin-top:8px}
+.total{font-family:'Cormorant Garamond',Georgia,serif;font-size:38px;color:var(--gold);margin:0}
+.msg{color:var(--mute);font-size:14px;line-height:1.7;padding:28px 8px}
+.note{font-size:12px;color:var(--mute);margin-top:8px}
+.foot{margin-top:30px;font-size:11px;color:var(--mute);line-height:1.7;opacity:.9}
+[hidden]{display:none!important}
+
+.wrap{max-width:560px;margin:0 auto;text-align:left}
+section.info{margin-top:34px;border-top:1px solid var(--line);padding-top:24px}
+section.info h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:26px;color:var(--gold);margin:0 0 12px;text-align:center}
+section.info h3{font-size:14px;font-weight:500;margin:16px 0 4px;color:var(--ink)}
+section.info p{font-size:13px;color:var(--mute);margin:0}
+</style>
+</head>
+<body>
+<main>
+  <div class="orn">◆ ◆ ◆</div>
+  <h1>TasaCartas</h1>
+  <p class="sub">Tasador de cartas Pokémon</p>
+  <p class="sub2">Haz una foto y descubre cuánto vale tu carta</p>
+  <div class="user">Tu álbum se guarda <b>en este dispositivo</b></div>
+
+  <div class="tabs">
+    <button class="on" id="t1">Tasar</button>
+    <button id="t2">Mi álbum (<span id="cnt">0</span>)</button>
+  </div>
+
+  <section id="v1">
+    <div class="frame" id="frame">
+      <div class="hint" id="hint"><b>Fotografía tu carta Pokémon</b>Haz una foto o elige una de tu galería</div>
+      <img id="prev" alt="Vista previa de tu carta">
+      <div class="scan"></div>
+    </div>
+    <input type="file" id="cam" accept="image/*" capture="environment" hidden>
+    <input type="file" id="gal" accept="image/*" hidden>
+    <div class="row">
+      <button id="bcam">📷 Hacer foto</button>
+      <button id="bgal">🖼 Galería</button>
+    </div>
+    <button class="primary" id="go" disabled>Ver su valor</button>
+    <div id="out" hidden>
+      <div id="cardbox" style="margin-top:22px;max-width:340px;margin-left:auto;margin-right:auto"></div>
+      <div class="row">
+        <button class="primary" id="keep">Quedármela</button>
+        <button id="drop">Descartar</button>
+      </div>
+      <p class="note" id="keepnote"></p>
+    </div>
+    <div id="errbox" class="msg" hidden></div>
+  </section>
+
+  <section id="v2" hidden><div id="album"></div></section>
+
+  <div class="wrap">
+    <section class="info">
+      <h2>¿Cuánto vale mi carta Pokémon?</h2>
+      <h3>¿Cómo funciona el tasador?</h3>
+      <p>Sube una foto de tu carta. TasaCartas identifica el nombre, la colección, el número, la versión (holo, reverse, primera edición…) y el idioma, y estima un rango de precio en euros.</p>
+      <h3>¿Qué tan fiable es el precio?</h3>
+      <p>Es una estimación orientativa. El estado real (centrado, bordes, esquinas, superficie) y si la carta está graduada pueden cambiar mucho el valor. Para cartas muy valiosas consulta a un tasador profesional.</p>
+      <h3>¿Se guardan mis fotos?</h3>
+      <p>Tu álbum se guarda solo en tu dispositivo, con una miniatura de cada carta. Puedes quitar cartas cuando quieras.</p>
+    </section>
+  </div>
+
+  <p class="foot">
+    TasaCartas es una herramienta independiente y no está afiliada, patrocinada ni respaldada por Nintendo, Creatures, GAME FREAK ni The Pokémon Company International. Pokémon y los nombres de los personajes son marcas registradas de sus respectivos propietarios. Los valores son estimaciones orientativas.
+  </p>
+</main>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var KEY='tasacartas_album_v1',file=null,current=null,busy=false,cards=load();
+  function load(){try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return[]}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(cards));return true}catch(e){return false}}
+  function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
+  function eur(n){n=Number(n)||0;try{return new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR',maximumFractionDigits:n<10?2:0}).format(n)}catch(e){return n+' €'}}
+  function tier(p){return p>=1000?'✦ Tesoro ✦':p>=100?'Excepcional':p>=10?'Valiosa':'Básica'}
+  function cardHtml(c,extra){
+    var avg=(Number(c.precio_min)+Number(c.precio_max))/2;
+    var sub=[c.coleccion,c.detalles].filter(Boolean).map(esc).join(' · ');
+    return '<div class="card"><div class="ph" style="background-image:url('+(c.img||'')+')"></div><div class="in">'+
+      '<div class="tier">'+tier(avg)+'</div><div class="cat">'+sub+'</div>'+
+      '<div class="name">'+esc(c.objeto)+'</div><div class="price">'+eur(avg)+'</div>'+
+      '<div class="est">Rango: '+eur(c.precio_min)+' – '+eur(c.precio_max)+'</div>'+
+      '<div class="why">'+esc(c.justificacion)+'</div>'+
+      '<div class="meta"><span>Estado: '+esc(c.estado)+'</span><span>Confianza: '+esc(c.confianza)+'</span></div>'+(extra||'')+'</div></div>';
+  }
+  function tab(n){$('v1').hidden=n!==1;$('v2').hidden=n!==2;$('t1').className=n===1?'on':'';$('t2').className=n===2?'on':''}
+  $('t1').onclick=function(){tab(1)};$('t2').onclick=function(){tab(2);renderAlbum()};
+  function renderAlbum(){
+    $('cnt').textContent=cards.length;
+    var a=$('album');
+    if(!cards.length){a.innerHTML='<div class="msg">Tu álbum está vacío.<br>Tasa una carta y pulsa «Quedármela».</div>';return}
+    var tot=cards.reduce(function(s,c){return s+(Number(c.precio_min)+Number(c.precio_max))/2},0);
+    a.innerHTML='<div class="total">'+eur(tot)+'</div><div class="est" style="margin-bottom:16px">Valor estimado de tu colección</div><div class="grid">'+
+      cards.map(function(c,i){return cardHtml(c,'<button data-i="'+i+'">Quitar</button>')}).join('')+'</div>';
+    Array.prototype.forEach.call(a.querySelectorAll('button[data-i]'),function(b){
+      b.onclick=function(){cards.splice(Number(b.getAttribute('data-i')),1);save();renderAlbum()};
+    });
+  }
+  renderAlbum();
+
+  function pick(e){
+    var f=e.target.files&&e.target.files[0];if(!f)return;
+    file=f;var p=$('prev');p.src=URL.createObjectURL(f);p.style.display='block';$('hint').style.display='none';
+    $('go').disabled=false;$('out').hidden=true;$('errbox').hidden=true;
+  }
+  $('cam').onchange=pick;$('gal').onchange=pick;
+  $('bcam').onclick=$('frame').onclick=function(){$('cam').value='';$('cam').click()};
+  $('bgal').onclick=function(){$('gal').value='';$('gal').click()};
+
+  function resize(f,w,q){
+    return new Promise(function(res,rej){
+      var im=new Image();
+      im.onload=function(){
+        var r=Math.min(1,w/im.width),c=document.createElement('canvas');
+        c.width=Math.round(im.width*r);c.height=Math.round(im.height*r);
+        c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',q));
+      };
+      im.onerror=rej;im.src=URL.createObjectURL(f);
+    });
+  }
+
+  $('go').onclick=function(){
+    if(!file||busy)return;
+    var err=$('errbox');err.hidden=true;
+    busy=true;$('go').disabled=true;$('go').textContent='Analizando…';$('frame').classList.add('busy');$('out').hidden=true;
+    Promise.all([resize(file,1024,.8),resize(file,320,.7)]).then(function(im){
+      return fetch('/api/tasar',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image:im[0].split(',')[1]})})
+        .then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j})})
+        .then(function(x){x.img=im[1];x.ts=Date.now();return x});
+    }).then(function(x){
+      current=x;$('cardbox').innerHTML=cardHtml(x);$('keepnote').textContent='';
+      $('out').hidden=false;$('out').scrollIntoView({behavior:'smooth'});
+    }).catch(function(){
+      err.textContent='No pudimos completar la tasación. Prueba con otra foto o inténtalo más tarde.';err.hidden=false;
+    }).then(function(){
+      busy=false;$('go').disabled=false;$('go').textContent='Ver su valor';$('frame').classList.remove('busy');
+    });
+  };
+
+  function reset(){
+    current=null;file=null;$('prev').style.display='none';$('hint').style.display='block';
+    $('out').hidden=true;$('go').disabled=true;window.scrollTo({top:0,behavior:'smooth'});
+  }
+  $('drop').onclick=reset;
+  $('keep').onclick=function(){
+    if(!current)return;
+    cards.unshift(current);
+    if(!save()){cards.shift();$('keepnote').textContent='No hay espacio para guardar más cartas en este dispositivo.';return}
+    reset();tab(2);renderAlbum();
+  };
+})();
+</script>
+</body>
+</html>
